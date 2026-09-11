@@ -1,0 +1,24 @@
+# ============================================================
+# Dataset Generator — Requirements
+# ============================================================
+# Install with:  pip install -r requirements.txt
+#
+# CuPy (GPU arrays) — install the variant matching your CUDA:
+#   CUDA 11.x:  pip install cupy-cuda11x
+#   CUDA 12.x:  pip install cupy-cuda12x
+#   No GPU:     pip install cupy-cuda12x  (will fall back to CPU ops)
+#
+# The auto-installer in main.py will detect your CUDA version
+# and install the correct cupy variant automatically.
+# ============================================================
+
+numpy>=1.24.0
+matplotlib>=3.7.0
+
+# cupy is listed here as a placeholder; main.py replaces this
+# with the correct cuda-versioned package at runtime.
+# If you prefer to install manually, comment out the line below
+# and install the correct variant yourself (see note above).
+cupy-cuda12x>=12.0.0
+torch
+pillow
