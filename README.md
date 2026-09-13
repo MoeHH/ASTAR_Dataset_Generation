@@ -1,6 +1,6 @@
 <!-- PrePrint available @ <ADD_PREPRINT_URL_HERE> -->
 
-# ASTAR Dataset Generation: A\* Grid Pathfinding Datasets for Transformer Path Planning
+# ASTAR Dataset Generation: A\* Grid Pathfinding Datasets for PSTAR Model for Path Planning
 
 **Abstract:** Learning-based path planners require large, well-structured datasets of grids with
 known-optimal solutions. This repository is a GPU-accelerated generator that produces such
