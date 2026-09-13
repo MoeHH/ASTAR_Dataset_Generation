@@ -4,15 +4,15 @@
 
 **Abstract:** Learning-based path planners require large, well-structured datasets of grids with
 known-optimal solutions. This repository is a GPU-accelerated generator that produces such
-datasets for 2D grid navigation using the A\* search algorithm. For each grid it records the
+datasets for 2D grid navigation using the A\* search algorithm. For each grid, it records the
 context (per-cell features and status), the found route(s), the action masking, and the target
 move sequence (Up, Down, Right, Left), and exports every sample in three interchangeable formats
 (PKL, JSON, and PyTorch `.pt` tensors) so the same data can drive both classical tooling and a
 Transformer training pipeline. Two generation modes are provided: a *templates* mode that places
 obstacles from a bank of pre-defined patterns under a configurable open-space schedule, and a
 *legacy* mode that scatters obstacles at random. Alongside solvable (`sol`) grids, the generator
-deliberately constructs unsolvable (`nosol`) grids — via disconnected components and isolated
-goals — to train a route-availability gate. A staged pipeline generates the master datasets,
+deliberately constructs unsolvable (`nosol`) grids and isolated
+goals to train a route-availability gate. A staged pipeline generates the master datasets,
 extracts a balanced gate ("RAGate") dataset, optionally renders ImageNet-style JPEGs of the
 grids, and validates everything with a two-level inspection sweep. The datasets produced here are
 consumed directly by the companion [`PSTAR`](../PSTAR) path-planning model.
@@ -26,7 +26,7 @@ Unsolvable Grids; Transformer Training Data
 
 This is the **data** half of the pipeline. It generates the grids, solves them with A\*, and
 exports the datasets that the companion [`PSTAR`](../PSTAR) repository trains on. The work is
-organised as a four-stage pipeline driven by a single, fully commented configuration file
+organized as a four-stage pipeline driven by a single, fully commented configuration file
 (`config.py`):
 
 * **Stage 1 — Base datasets.** Generate the solvable (`sol`) and unsolvable (`nosol`) master
@@ -34,7 +34,7 @@ organised as a four-stage pipeline driven by a single, fully commented configura
 * **Stage 2 — RAGate dataset.** Extract a balanced route-availability classifier dataset
   (`label=1` solvable, `label=0` unsolvable) into `Datasets/RAGate/`.
 * **Stage 3 — Images (optional).** Render ImageNet-style JPEGs of the master grids
-  (start / goal / obstacles / path) at one or more resolutions.
+  (start / goal/obstacles/path) at one or more resolutions.
 * **Stage 4 — Inspection.** Validate the datasets with Quick and/or Detailed integrity sweeps.
 
 ## Requirements
@@ -63,7 +63,7 @@ automatically if it is missing.
 
 ## Instructions
 
-Choose which stages run and configure their behaviour with the switches near the bottom of
+Choose which stages run and configure their behavior with the switches near the bottom of
 `config.py`, then run:
 
 ```bash
@@ -156,7 +156,7 @@ a `label` (`1` = solvable, `0` = unsolvable) — so all three formats stay in sy
 Route plots and rendered grid images are written under `Datasets/`. Enable `save_route_plots`,
 `show_animation`, or `show_finalimage` in `config.py` to visualize individual A\* solutions.
 
-<!-- Add example grid / route images here, e.g.:
+<!-- Add example grid/route images here, e.g.:
 ![Solvable grid with A* route](docs/sol_example.png)
 ![Unsolvable grid (isolated goal)](docs/nosol_example.png)
 -->
